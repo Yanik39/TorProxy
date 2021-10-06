@@ -31,6 +31,8 @@ RUN cd /tmp \
 		/help/supervisor_secrets.sh /usr/local/bin/torlog \
 	&& chmod 777 /help/Health*	
 
+EXPOSE 9050-9061
+
 HEALTHCHECK --interval=2m --timeout=39s --start-period=3m --retries=10 \
 	CMD ["/bin/bash","-c","/help/HealthCheck"]
 	
