@@ -27,7 +27,7 @@ RUN cd /tmp \
 	&& chown -R tor:tor /home/tor /usr/local/tor \
 	&& chmod 600 /help/supervisord.conf \
 	&& chmod 644 /help/bashrc /help/resolv.conf /help/dnsmasq.conf \
-	&& chmod 700 /TORNet /help/check_updates.sh help/fix_permissions.sh \
+	&& chmod 700 /TORNet /help/check_updates.sh /help/fix_permissions.sh \
 		/help/supervisor_secrets.sh /usr/local/bin/torlog \
 	&& chmod 777 /help/Health*	
 
