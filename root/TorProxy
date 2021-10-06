@@ -1,0 +1,118 @@
+#!/bin/bash
+
+uid=$(id -u tor)
+gid=$(id -g tor)
+
+echo ""
+echo "Welcome to TorProxy"
+echo ""
+echo "Docker Repo: https://hub.docker.com/r/yanik39/torproxy"
+echo "Github Repo: https://github.com/Yanik39/TorProxy"
+echo ""
+echo "Going to check default Files/Folders"
+echo "Defaults Folder is (/usr/local/tor)"
+echo ""
+
+if [[ ! -f "/help/first_run_done" ]]
+then
+	echo "Checking Debian updates before First Run"
+	echo "Checking Python PIP updates before First Run"
+	/bin/bash /help/check_updates.sh
+	echo "System is now UpToDate"
+	echo "Checking UID and GID"
+	[ "$uid" -eq "$UID" ] || usermod -u $UID tor
+	[ "$gid" -eq "$GID" ] || groupmod -g $GID tor
+	echo "Copying proper dnsmasq.conf"
+	cp /help/dnsmasq.conf /etc/dnsmasq.conf
+	echo "Creating symbolic links for Python"
+	ln -s /usr/local/bin/python3.9 /usr/bin/python3
+else
+	echo "Not First Run, So skipping updates"
+	echo "To update system properly; Please run (/help/check_updates.sh)"
+fi
+if [[ ! -f "/home/tor/tor/torrc" ]]
+then
+	echo "Copying default Tor configuration file"
+	mkdir -p /home/tor/tor
+	cp /usr/local/tor/tor/torrc /home/tor/tor/torrc
+else
+	echo "Tor configuration is fine"
+fi
+if [[ ! -f "/home/tor/tor/torsocks.conf" ]]
+then
+	echo "Copying default TorSocks configuration file"
+	mkdir -p /home/tor/tor
+	cp /usr/local/tor/tor/torsocks.conf /home/tor/tor/torsocks.conf
+else
+	echo "TorSocks configuration is fine"
+fi
+if [[ ! -f "/home/tor/supervisor/supervisord_NoLog.conf" ]]
+then
+	echo "Copying default Supervisor NoLog configuration file"
+	mkdir -p /home/tor/supervisor
+	cp -r /usr/local/tor/supervisor/supervisord_NoLog.conf /home/tor/supervisor/supervisord_NoLog.conf
+else
+	echo "Supervisor NoLog configuration is present"
+fi
+if [[ ! -f "/home/tor/supervisor/supervisord_WithLog.conf" ]]
+then
+	echo "Copying default Supervisor WithLog configuration file"
+	mkdir -p /home/tor/supervisor
+	cp -r /usr/local/tor/supervisor/supervisord_WithLog.conf /home/tor/supervisor/supervisord_WithLog.conf
+else
+	echo "Supervisor WithLog configuration is present"
+fi
+if [[ ! -f "/help/supervisor_secure" ]]
+then
+	echo "Creating Supervisor secrets"
+	/bin/bash /help/supervisor_secrets.sh
+else
+	echo "Supervisor is already secured"
+fi
+if [[ ! -f "/home/tor/.nyx/config" ]]
+then
+	echo "Copying default NYX configuration file"
+	mkdir -p /home/tor/.nyx
+	cp /usr/local/tor/nyx/config /home/tor/.nyx/config
+else
+	echo "NYX configuration is fine"
+fi
+if [[ ! -d "/home/tor/logs" ]]
+then
+	echo "Creating default LOGS folder"
+    	mkdir -p /home/tor/logs
+fi
+if [[ ! -f "/home/tor/.bashrc" ]]
+then
+	echo "Copying Default/Custom .bashrc"
+	rm -rf /root/.bashrc
+	cp /help/bashrc /root/.bashrc
+	cp /help/bashrc /home/tor/.bashrc
+fi
+if [[ ! -f "/home/tor/vanguards/vanguards.py" ]] && [[ ! -d "/home/tor/vanguards/vanguards" ]]
+then
+	echo "Fetching latest version of Vanguards"
+	wget -qO vanguards.zip https://github.com/mikeperry-tor/vanguards/archive/refs/heads/master.zip
+	unzip -qqo vanguards.zip
+	cp -r vanguards-master/src /home/tor/vanguards
+	rm -rf vanguards-master vanguards.zip
+	chmod +x /home/tor/vanguards/vanguards.py /home/tor/vanguards/vanguards/*.py
+else
+	echo "Vanguards is fine"
+	echo "To update Vanguards, simply delete Vanguards folder and restart Container"
+fi
+if [[ ! -f "/home/tor/vanguards/vanguards.conf" ]]
+then
+	echo "Copying default Vanguards configuration file"
+	cp -r /usr/local/tor/vanguards/vanguards.conf /home/tor/vanguards/vanguards.conf
+fi
+echo "Copying proper resolv.conf"
+cp /help/resolv.conf /etc/resolv.conf
+echo "Fixing permissions"
+/bin/bash /help/fix_permissions.sh &
+
+echo ""
+echo "Now, Starting Supervisor for all services"
+echo ""
+
+exec /usr/local/bin/python3 /usr/local/bin/supervisord -c /etc/supervisor/supervisord.conf
