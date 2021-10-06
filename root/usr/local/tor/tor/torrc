@@ -2,22 +2,28 @@ RunAsDaemon 0
 DataDirectory /home/tor/tor/data
 
 SocksPort 127.0.0.1:9050 IsolateDestAddr IsolateDestPort
-ControlPort 127.0.0.1:9051
+SocksPort 127.0.0.1:9051 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9052 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9053 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9054 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9055 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9056 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9057 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9058 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9059 IsolateDestAddr IsolateDestPort
+ControlPort 127.0.0.1:9060
 CookieAuthentication 1
 
 SOCKSPolicy accept 127.0.0.1
 SOCKSPolicy reject *
 
-DNSPort 9053
+DNSPort 9061
 AutomapHostsOnResolve 1
 AutomapHostsSuffixes .exit,.onion
 
 AvoidDiskWrites 1
 TruncateLogFile  1
 HardwareAccel 1
-FetchDirInfoEarly 1
-FetchDirInfoExtraEarly 1
-FetchUselessDescriptors 1
 
 Log notice file /home/tor/logs/tor.log
 # Comment above line and uncomment below line to torn Tor logging off.
