@@ -16,7 +16,7 @@ RUN cd /tmp \
 	&& apt-get update -qq && apt-get upgrade -y --with-new-pkgs -qq \
 	&& apt-get install -y --no-install-recommends --no-install-suggests -qq \
 		deb.torproject.org-keyring tor obfs4proxy torsocks tor-geoipdb \
-		dnsmasq nano net-tools dnsutils zip unzip expect \
+		dnsmasq nano net-tools dnsutils zip unzip \
 	&& apt-get update -qq && apt-get upgrade -y --with-new-pkgs -qq \
 	&& apt-get clean autoclean -qq && apt-get autoremove -y -qq \
 	&& /usr/local/bin/python3 -m pip install --upgrade pip \
