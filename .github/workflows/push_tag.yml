@@ -1,6 +1,8 @@
 name: Push_Docker TAG
 
 on:
+  schedule:
+    - cron:  '39 8 * * 5'
   push:
     tags:
       - '*'

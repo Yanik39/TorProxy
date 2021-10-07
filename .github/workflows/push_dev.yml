@@ -1,6 +1,8 @@
 name: Push_Docker DEV
 
 on:
+  schedule:
+    - cron:  '29 8 * * 5'
   push:
     branches:
       - 'main'
