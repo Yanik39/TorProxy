@@ -6,11 +6,13 @@ SocksPort 0.0.0.0:9051 IsolateDestAddr IsolateDestPort
 SocksPort 0.0.0.0:9052 IsolateDestAddr IsolateDestPort
 SocksPort 0.0.0.0:9053 IsolateDestAddr IsolateDestPort
 SocksPort 0.0.0.0:9054 IsolateDestAddr IsolateDestPort
-SocksPort 0.0.0.0:9055 IsolateDestAddr IsolateDestPort
-SocksPort 0.0.0.0:9056 IsolateDestAddr IsolateDestPort
-SocksPort 0.0.0.0:9057 IsolateDestAddr IsolateDestPort
-SocksPort 0.0.0.0:9058 IsolateDestAddr IsolateDestPort
-SocksPort 0.0.0.0:9059 IsolateDestAddr IsolateDestPort
+
+HTTPTunnelPort 0.0.0.0:9055 IsolateDestAddr IsolateDestPort
+HTTPTunnelPort 0.0.0.0:9056 IsolateDestAddr IsolateDestPort
+HTTPTunnelPort 0.0.0.0:9057 IsolateDestAddr IsolateDestPort
+HTTPTunnelPort 0.0.0.0:9058 IsolateDestAddr IsolateDestPort
+HTTPTunnelPort 0.0.0.0:9059 IsolateDestAddr IsolateDestPort
+
 ControlPort 127.0.0.1:9060
 CookieAuthentication 1
 
