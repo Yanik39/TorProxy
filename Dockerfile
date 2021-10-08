@@ -31,7 +31,6 @@ RUN cd /tmp \
 		/help/supervisor_secrets.sh /usr/local/bin/torlog \
 	&& chmod 777 /help/Health*	
 
-EXPOSE 53
 EXPOSE 9048-9062
 
 HEALTHCHECK --interval=2m --timeout=39s --start-period=3m --retries=10 \

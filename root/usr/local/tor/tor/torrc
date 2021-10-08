@@ -1,7 +1,7 @@
 RunAsDaemon 0
 DataDirectory /home/tor/tor/data
 
-DNSPort 9048
+DNSPort 53
 AutomapHostsOnResolve 1
 AutomapHostsSuffixes .exit,.onion
 
