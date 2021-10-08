@@ -32,7 +32,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       -
         name: Get the TAG
-        run: echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+        run: echo "TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV
       -
         name: Push_Docker TAG
         uses: docker/build-push-action@v2
