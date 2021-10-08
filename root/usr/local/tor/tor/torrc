@@ -1,24 +1,23 @@
 RunAsDaemon 0
 DataDirectory /home/tor/tor/data
 
+DNSPort 9048
+AutomapHostsOnResolve 1
+AutomapHostsSuffixes .exit,.onion
+
+ControlPort 127.0.0.1:9049
+CookieAuthentication 1
+
 SocksPort 0.0.0.0:9050 IsolateDestAddr IsolateDestPort
 SocksPort 0.0.0.0:9051 IsolateDestAddr IsolateDestPort
 SocksPort 0.0.0.0:9052 IsolateDestAddr IsolateDestPort
 SocksPort 0.0.0.0:9053 IsolateDestAddr IsolateDestPort
-SocksPort 0.0.0.0:9054 IsolateDestAddr IsolateDestPort
-
-HTTPTunnelPort 0.0.0.0:9055 IsolateDestAddr IsolateDestPort
-HTTPTunnelPort 0.0.0.0:9056 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9054 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9055 IsolateDestAddr IsolateDestPort
+SocksPort 127.0.0.1:9056 IsolateDestAddr IsolateDestPort
 HTTPTunnelPort 0.0.0.0:9057 IsolateDestAddr IsolateDestPort
 HTTPTunnelPort 0.0.0.0:9058 IsolateDestAddr IsolateDestPort
 HTTPTunnelPort 0.0.0.0:9059 IsolateDestAddr IsolateDestPort
-
-ControlPort 127.0.0.1:9060
-CookieAuthentication 1
-
-DNSPort 9061
-AutomapHostsOnResolve 1
-AutomapHostsSuffixes .exit,.onion
 
 AvoidDiskWrites 1
 TruncateLogFile  1

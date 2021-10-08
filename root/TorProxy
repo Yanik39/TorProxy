@@ -3,15 +3,15 @@
 uid=$(id -u tor)
 gid=$(id -g tor)
 
-echo ""
+echo " "
 echo "Welcome to TorProxy"
-echo ""
+echo " "
 echo "Docker Repo: https://hub.docker.com/r/yanik39/torproxy"
 echo "Github Repo: https://github.com/Yanik39/TorProxy"
-echo ""
+echo " "
 echo "Going to check default Files/Folders"
 echo "Defaults Folder is (/usr/local/tor)"
-echo ""
+echo " "
 
 if [[ ! -f "/help/first_run_done" ]]
 then
@@ -45,6 +45,30 @@ then
 	cp /usr/local/tor/tor/torsocks.conf /home/tor/tor/torsocks.conf
 else
 	echo "TorSocks configuration is fine"
+fi
+if [[ ! -f "/home/tor/privoxy/1/config" ]]
+then
+	echo "Copying Privoxy 1 configuration file"
+	mkdir -p /home/tor/privoxy/1
+	cp -r /usr/local/tor/privoxy/1/* /home/tor/privoxy/1/
+else
+	echo "Privoxy 1 configuration is fine"
+fi
+if [[ ! -f "/home/tor/privoxy/2/config" ]]
+then
+	echo "Copying Privoxy 2 configuration file"
+	mkdir -p /home/tor/privoxy/2
+	cp -r /usr/local/tor/privoxy/2/* /home/tor/privoxy/2/
+else
+	echo "Privoxy 2 configuration is fine"
+fi
+if [[ ! -f "/home/tor/privoxy/3/config" ]]
+then
+	echo "Copying Privoxy 3 configuration file"
+	mkdir -p /home/tor/privoxy/3
+	cp -r /usr/local/tor/privoxy/3/* /home/tor/privoxy/3/
+else
+	echo "Privoxy 3 configuration is fine"
 fi
 if [[ ! -f "/home/tor/supervisor/supervisord_NoLog.conf" ]]
 then

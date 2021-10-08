@@ -1,0 +1,15 @@
+confdir /home/tor/privoxy/1
+logdir /home/tor/logs
+actionsfile match-all.action
+actionsfile default.action
+actionsfile user.action
+filterfile default.filter
+filterfile user.filter
+logfile privoxy1.log
+buffer-limit 4096
+forwarded-connect-retries  5
+keep-alive-timeout 5
+tolerate-pipelining 1
+socket-timeout 300
+listen-address  0.0.0.0:9060
+forward-socks5t / 127.0.0.1:9054 .

@@ -16,7 +16,7 @@ RUN cd /tmp \
 	&& apt-get update -qq && apt-get upgrade -y --with-new-pkgs -qq \
 	&& apt-get install -y --no-install-recommends --no-install-suggests -qq \
 		deb.torproject.org-keyring tor obfs4proxy torsocks tor-geoipdb \
-		dnsmasq nano net-tools dnsutils zip unzip procps \
+		dnsmasq nano net-tools dnsutils zip unzip procps privoxy \
 	&& apt-get update -qq && apt-get upgrade -y --with-new-pkgs -qq \
 	&& apt-get clean autoclean -qq && apt-get autoremove -y -qq \
 	&& /usr/local/bin/python3 -m pip install --upgrade pip \
@@ -31,7 +31,8 @@ RUN cd /tmp \
 		/help/supervisor_secrets.sh /usr/local/bin/torlog \
 	&& chmod 777 /help/Health*	
 
-EXPOSE 9050-9061
+EXPOSE 53
+EXPOSE 9048-9062
 
 HEALTHCHECK --interval=2m --timeout=39s --start-period=3m --retries=10 \
 	CMD ["/bin/bash","-c","/help/HealthCheck"]
