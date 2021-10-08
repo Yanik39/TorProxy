@@ -22,6 +22,7 @@ HTTPTunnelPort 0.0.0.0:9059 IsolateDestAddr IsolateDestPort
 AvoidDiskWrites 1
 TruncateLogFile  1
 HardwareAccel 1
+SocksPolicy accept *
 
 Log notice file /home/tor/logs/tor.log
 # Comment above line and uncomment below line to torn Tor logging off.
