@@ -32,7 +32,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       -
         name: Get the TAG
-        run: echo "TAG=`echo $(git ls-remote --tags --sort="v:refname" https://github.com/Yanik39/TorProxy.git | tail -n1 | sed 's/.*\///; s/\^{}//')`" >> $GITHUB_ENV
+        run: echo "TAG=`echo $(git ls-remote --tags --refs --sort="v:refname" https://github.com/Yanik39/TorProxy.git | tail -n1 | sed 's/.*\///')`" >> $GITHUB_ENV
       -
         name: Push_Docker TAG
         uses: docker/build-push-action@v2
